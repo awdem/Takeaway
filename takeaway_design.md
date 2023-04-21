@@ -144,8 +144,8 @@ class MenuFormatter
     end
 end
 
-class ReceiptFormatter(order_in_progress) # order_in_progress is an instance of the OrderMaker class
-  def initialize
+class ReceiptFormatter
+  def initialize(order_in_progress) # order_in_progress is an instance of the OrderMaker class
 
   end
 
