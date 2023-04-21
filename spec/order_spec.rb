@@ -15,7 +15,6 @@ RSpec.describe Order do
     order = Order.new(customer)
     order.add(dish)
     expect(order.list).to eq [dish]    
-  end  
+  end 
 
-  
 end

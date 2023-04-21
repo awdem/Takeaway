@@ -25,7 +25,7 @@ RSpec.describe "takeaway integration" do
 
   describe "order making process" do
     context "given a menu with some dishes listed" do
-      xit "creates an order and allows customer to add dishes to it" do
+      it "creates an order and allows customer to add dishes to it" do
         customer = Customer.new("010000000001")
         dish1 = Dish.new("name1", "price1")
         dish2 = Dish.new("name2", "price2")

@@ -12,7 +12,7 @@ class Order
     @list
   end
 
-  def add(dish) #dish is an instance of the Dish class
+  def add(dish)
     @list << dish
     # fail state?
   end
