@@ -4,7 +4,7 @@ require 'menu'
 
 RSpec.describe "takeaway integration" do
   describe "menu creation" do
-    xit "creates a menu with several dishes" do
+    it "creates a menu with several dishes" do
       dish1 = Dish.new("name1", "price1")
       dish2 = Dish.new("name2", "price2")
       menu = Menu.new
