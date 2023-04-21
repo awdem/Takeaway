@@ -1,18 +1,19 @@
 class Order
-  def initialize(customer) # customer is an instance of the customer class
-    # ...
+  def initialize(customer) 
+    @customer = customer
+    @list = []
   end
 
   def customer?
-    #returns customer who placed order
+    @customer.number
   end
 
   def list
-    # lists the dishes in the order
+    @list
   end
 
   def add(dish) #dish is an instance of the Dish class
-    # returns nothing
+    @list << dish
     # fail state?
   end
 end
