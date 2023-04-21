@@ -90,16 +90,12 @@ class Dish
 end
 
 class OrderMaker
-  def initialize(menu, customer, order) # menu is an instance of the Menu Class, customer is an instance of the Customer class, order is an instance of the Order class
+  def initialize(menu, order) # menu is an instance of the Menu Class, order is an instance of the Order class
     # ...
   end
 
-  # def check_menu
-  #   # displays the menu for the user to choose from 
-  # end
-
   def check_order(order) # order is an instance of the Order class
-    # returns a list of the dishes on the current order
+    # returns the instance of the current order in progress
   end
 
   def select(dish) #dish is an instance of the dish class
@@ -111,6 +107,10 @@ end
 class Order
   def initialize(customer) # customer is an instance of the customer class
     # ...
+  end
+
+  def customer?
+    #returns customer who placed order
   end
 
   def list
@@ -140,17 +140,17 @@ class MenuFormatter
     end
 
     def format
-      # returns formatted menu
+      # returns formatted menu as a string
     end
 end
 
-class ReceiptFormatter(order)
+class ReceiptFormatter(order_in_progress) # order_in_progress is an instance of the OrderMaker class
   def initialize
 
   end
 
   def format
-    # returns formatted receipt
+    # returns formatted receipt as a string
   end
 
 end
@@ -220,7 +220,7 @@ order_in_progress.select(dish2) => # "fails with 'Not on the menu!'"
 # > So that I can verify that my order is correct  
 # > I would like to see an itemised receipt with a grand total.
 
-# 1 - creates an order, and adds dishes to it
+# 1 - allows customer to check on current order with total of prices
 customer = Customer.new("010000000001")
 dish1 = Dish.new("name1", "price1")
 dish2 = Dish.new("name2", "price2")

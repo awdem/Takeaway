@@ -23,5 +23,59 @@ RSpec.describe "takeaway integration" do
     end
   end
 
+  describe "order making process" do
+    context "given a menu with some dishes listed" do
+      xit "creates an order and allows customer to add dishes to it" do
+        customer = Customer.new("010000000001")
+        dish1 = Dish.new("name1", "price1")
+        dish2 = Dish.new("name2", "price2")
+        menu = Menu.new
+        new_order = Order.new(customer)
+        menu.add(dish1)
+        menu.add(dish2)
+        order_in_progress = OrderMaker.new(menu, new_order, customer)
+        order_in_progress.select(dish1)
+
+        expect(new_order.list).to eq [dish1]      
+      end
+
+      xit "fails if trying to select a dish that is not on the menu" do
+        customer = Customer.new("010000000001")
+        dish1 = Dish.new("name1", "price1")
+        dish2 = Dish.new("name2", "price2")
+        menu = Menu.new
+        new_order = Order.new
+        menu.add(dish1)
+        order_in_progress = OrderMaker.new(menu, new_order, customer)
+        expect{order_in_progress.select(dish2)}.to raise_error "Not on the menu!"      
+      end
+
+      xit "allows customer to see an itemised receipt of the order in progress with sum of prices" do
+        customer = Customer.new("010000000001")
+        dish1 = Dish.new("name1", "1")
+        dish2 = Dish.new("name2", "2")
+        menu = Menu.new
+        new_order = Order.new
+        menu.add(dish1)
+        menu.add(dish2)
+        order_in_progress = OrderMaker.new(menu, new_order, customer)
+        order_in_progress.select(dish1)
+        receipt = ReceiptFormatter.new(order_in_progress.check_order) 
+        
+        expect(receipt).to eq "- name1, price: 1\n- name2, price: 2\ntotal price: 3"
+      end
+    end
+
+    context "given an empty menu" do
+      xit "fails to start the process" do
+        customer = Customer.new("010000000001")
+        menu = Menu.new
+        new_order = Order.new(customer)
+        expect{OrderMaker.new(menu, new_order, customer)}.to raise_error "Nothing on the menu!"   
+      end
+    end
+  end
+
+  
   
 end
