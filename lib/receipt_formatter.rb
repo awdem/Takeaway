@@ -13,9 +13,7 @@ class ReceiptFormatter
   private
 
   def sum
-    @order_in_progress.check.list.sum do |dish|
-     dish.price.to_i 
-    end 
+    @order_in_progress.check.list.sum { |dish| dish.price.to_i }
   end
  
 end
