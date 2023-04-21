@@ -5,7 +5,7 @@ class OrderMaker
     @customer = customer
   end
 
-  def check_order(order) # order is an instance of the Order class
+  def check
     @order
   end
 
