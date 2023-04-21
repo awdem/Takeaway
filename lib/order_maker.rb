@@ -10,7 +10,7 @@ class OrderMaker
   end
 
   def select(dish) #dish is an instance of the dish class
-    @menu.list.include?(dish) ? @order.list << dish : nil
+    @menu.list.include?(dish) ? @order.list << dish : fail("Not on the menu!")
   end
-
+ 
 end

@@ -44,7 +44,7 @@ RSpec.describe "takeaway integration" do
         dish1 = Dish.new("name1", "price1")
         dish2 = Dish.new("name2", "price2")
         menu = Menu.new
-        new_order = Order.new
+        new_order = Order.new(customer)
         menu.add(dish1)
         order_in_progress = OrderMaker.new(menu, new_order, customer)
         expect{order_in_progress.select(dish2)}.to raise_error "Not on the menu!"      
