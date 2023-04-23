@@ -22,6 +22,4 @@ RSpec.describe ReceiptFormatter do
       expect(receipt).to eq "- name1, price: 1.99\n- name2, price: 2.99\ntotal price: 4.98"
     end
   end
-
-  # test for if prices are floats, also need to mock the above
 end
