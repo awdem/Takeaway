@@ -238,7 +238,20 @@ order_in_progress.check_order => # returns receipt
 # > I would like to receive a text such as "Thank you! Your order was placed and
 # > will be delivered before 18:52" after I have ordered.
 
+# 1 - texts customer upon completing order
 
+customer = Customer.new("010000000001")
+dish1 = Dish.new("name1", "price1")
+dish2 = Dish.new("name2", "price2")
+menu = Menu.new
+new_order = Order.new
+menu.add(dish1)
+menu.add(dish2)
+order_in_progress = OrderMaker.new(menu, new_order, customer)
+order_in_progress.select(dish1)
+new_order.list => [dish1]
+finalized_order = OrderCompleter.new(order_in_progress)
+finalized_order.complete # => t
 
 ```
 
