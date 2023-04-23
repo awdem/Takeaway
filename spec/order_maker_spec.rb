@@ -38,9 +38,9 @@ RSpec.describe OrderMaker do
 
   context "given an empty menu" do
     it "fails to start the process" do
-      customer = Customer.new("010000000001")
-      menu = Menu.new
-      new_order = Order.new(customer)
+      customer = double :customer
+      menu = double :menu, list: []
+      new_order = double :order
       expect{OrderMaker.new(menu, new_order, customer)}.to raise_error "Nothing on the menu!"   
     end
   end
