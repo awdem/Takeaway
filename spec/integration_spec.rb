@@ -93,6 +93,24 @@ RSpec.describe "takeaway integration" do
     end
   end
 
-  
+  describe "order completion" do
+    context "given a finalized order" do
+      xit "text customer with message" do
+        customer = Customer.new("010000000001")
+        dish1 = Dish.new("name1", "price1")
+        dish2 = Dish.new("name2", "price2")
+        menu = Menu.new
+        new_order = Order.new
+        menu.add(dish1)
+        menu.add(dish2)
+        order_in_progress = OrderMaker.new(menu, new_order, customer)
+        order_in_progress.select(dish1)
+        new_order.list => [dish1]
+        finalized_order = OrderCompleter.new(order_in_progress)
+        finalized_order.complete # => texts customer with message like: 'Thank you! Your order was placed and
+        #  will be delivered before 18:52'        
+      end
+    end
+  end
   
 end

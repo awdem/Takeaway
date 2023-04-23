@@ -251,7 +251,8 @@ order_in_progress = OrderMaker.new(menu, new_order, customer)
 order_in_progress.select(dish1)
 new_order.list => [dish1]
 finalized_order = OrderCompleter.new(order_in_progress)
-finalized_order.complete # => t
+finalized_order.complete # => texts customer with message like: 'Thank you! Your order was placed and
+#  will be delivered before 18:52'
 
 ```
 
