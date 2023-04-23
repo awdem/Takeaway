@@ -4,7 +4,8 @@ require 'order_maker'
 RSpec.describe OrderMaker do
   it "constructs" do
     customer = double :customer
-    menu = double :menu
+    dish = double :dish
+    menu = double :menu, list: [dish]
     new_order = double :order
     order_in_progress = OrderMaker.new(menu, new_order, customer)
 
@@ -35,4 +36,12 @@ RSpec.describe OrderMaker do
     expect{order_in_progress.select(dish2)}.to raise_error "Not on the menu!"      
   end
 
+  context "given an empty menu" do
+    it "fails to start the process" do
+      customer = Customer.new("010000000001")
+      menu = Menu.new
+      new_order = Order.new(customer)
+      expect{OrderMaker.new(menu, new_order, customer)}.to raise_error "Nothing on the menu!"   
+    end
+  end
 end

@@ -84,7 +84,7 @@ RSpec.describe "takeaway integration" do
     end
 
     context "given an empty menu" do
-      xit "fails to start the process" do
+      it "fails to start the process" do
         customer = Customer.new("010000000001")
         menu = Menu.new
         new_order = Order.new(customer)
