@@ -63,8 +63,24 @@ RSpec.describe "takeaway integration" do
         order_in_progress.select(dish2)
         receipt = ReceiptFormatter.new(order_in_progress).format
         
-        expect(receipt).to eq "- name1, price: 1\n- name2, price: 2\ntotal price: 3"
+        expect(receipt).to eq "- name1, price: 1\n- name2, price: 2\ntotal price: 3.0"
       end
+    end
+
+    it "sums prices that are floats on receipt" do
+      customer = Customer.new("010000000001")
+      dish1 = Dish.new("name1", "1.99")
+      dish2 = Dish.new("name2", "2.99")
+      menu = Menu.new
+      new_order = Order.new(customer)
+      menu.add(dish1)
+      menu.add(dish2)
+      order_in_progress = OrderMaker.new(menu, new_order, customer)
+      order_in_progress.select(dish1)
+      order_in_progress.select(dish2)
+      receipt = ReceiptFormatter.new(order_in_progress).format
+      
+      expect(receipt).to eq "- name1, price: 1.99\n- name2, price: 2.99\ntotal price: 4.98"
     end
 
     context "given an empty menu" do
